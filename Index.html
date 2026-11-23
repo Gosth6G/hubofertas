@@ -1,1 +1,171 @@
 
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101010">
+<meta name="description" content="HubOfertas: encontre ofertas de tecnologia, casa, moda, beleza, esportes e muito mais.">
+<title>HubOfertas | Seu shopping de ofertas</title>
+<style>
+:root{--bg:#101010;--panel:#1b1b1b;--panel2:#242424;--gold:#e5bd60;--gold2:#c89c3c;--muted:#bdb7aa;--line:#554522;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif}
+button,input,select{font:inherit}
+button{border:0;border-radius:9px;padding:11px 15px;background:var(--gold);color:#111;font-weight:800;cursor:pointer;transition:.2s}
+button:hover{background:#f2d481;transform:translateY(-1px)}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+header{position:sticky;top:0;z-index:10;background:#080808;border-bottom:1px solid var(--line);padding:13px max(16px,calc((100% - 1160px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-size:24px;font-weight:900;color:var(--gold);letter-spacing:.2px;text-decoration:none;white-space:nowrap}
+.logo span{color:white}
+.header-actions{display:flex;align-items:center;gap:8px}
+.header-actions button{font-size:12px}
+.hero{padding:48px 16px 38px;text-align:center;background:radial-gradient(ellipse at top,#493718 0%,#211a0e 42%,#101010 78%)}
+.eyebrow{color:var(--gold);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+.hero h1{max-width:760px;margin:12px auto;color:#f1d17e;font-size:clamp(30px,5vw,48px);line-height:1.05}
+.hero p{max-width:620px;margin:12px auto 22px;color:#ddd;line-height:1.5}
+.search-wrap{max-width:620px;margin:auto;position:relative}
+.search-wrap input{width:100%;padding:16px 18px 16px 46px;border:1px solid #80672f;border-radius:12px;background:#242424;color:white;font-size:15px}
+.search-icon{position:absolute;left:16px;top:14px;font-size:19px}
+main{max-width:1160px;margin:auto;padding:22px 16px 48px}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:26px 0 12px}
+h2{font-size:21px;color:var(--gold);margin:0}
+.muted{color:var(--muted);font-size:13px}
+.categories{display:flex;gap:8px;overflow:auto;padding:5px 1px 12px;scrollbar-width:thin}
+.categories button{white-space:nowrap;background:#242424;border:1px solid #554522;color:#eee}
+.categories button.active{background:var(--gold);color:#111;border-color:var(--gold)}
+.feature-banner{display:flex;justify-content:space-between;align-items:center;gap:18px;padding:22px;margin:18px 0 28px;border:1px solid #8d7136;border-radius:15px;background:linear-gradient(110deg,#2c2415,#171717 72%)}
+.feature-banner h2{font-size:24px;margin-bottom:8px}
+.feature-banner p{color:#ddd;margin:0;line-height:1.5}
+.feature-banner button{white-space:nowrap}
+.products{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.card{display:flex;flex-direction:column;min-width:0;background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:10px;transition:.2s}
+.card:hover{border-color:var(--gold2);transform:translateY(-2px)}
+.card img{width:100%;height:140px;object-fit:contain;background:#292929;border-radius:9px}
+.tag{margin-top:10px;color:var(--gold);font-size:11px;font-weight:700}
+.card h3{font-size:15px;line-height:1.3;margin:7px 0;color:#f0d17c}
+.card .price{font-weight:800;font-size:14px;margin-top:auto;padding-top:4px}
+.card .store{font-size:11px;color:#aaa;margin-top:5px}
+.card a{display:block;text-decoration:none;margin-top:12px}
+.card a button{width:100%}
+.card .placeholder{opacity:.55;cursor:not-allowed;background:#555;color:#ddd;width:100%;margin-top:12px}
+.empty{grid-column:1/-1;text-align:center;padding:36px 12px;color:#bbb;background:#1b1b1b;border:1px dashed #554522;border-radius:12px}
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:30px 0}
+.trust article{padding:16px;background:#191919;border:1px solid #383020;border-radius:12px}
+.trust strong{display:block;color:var(--gold);margin-bottom:6px}
+.trust p{margin:0;color:#bbb;font-size:12px;line-height:1.5}
+.store-list{padding:20px;border:1px solid #554522;border-radius:13px;background:#1b1b1b;margin-top:28px}
+.store-list p{color:#ccc;line-height:1.7;margin-bottom:0}
+.panel{display:none;background:#1b1b1b;padding:18px;border:1px solid var(--gold);border-radius:13px;margin-top:28px}
+.panel.open{display:block}
+.panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.panel input,.panel select{width:100%;padding:12px;margin:5px 0;background:#252525;border:1px solid #80672f;border-radius:8px;color:white}
+.panel label{display:block;color:#ddd;font-size:12px;margin-top:7px}
+.panel .wide{grid-column:1/-1}
+.admin-list{margin-top:12px}
+.adminitem{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid #444;font-size:13px}
+.adminitem button{padding:7px 10px;background:#7d3434;color:white}
+.notice{background:#2b2417;border:1px solid #80672f;color:#e9d8ad;border-radius:9px;padding:12px;font-size:12px;line-height:1.5;margin:12px 0}
+footer{text-align:center;padding:28px 16px;color:#aaa;font-size:12px;border-top:1px solid #332b1c}
+footer p{max-width:760px;margin:8px auto;line-height:1.5}
+@media(min-width:650px){.products{grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}.card img{height:175px}}
+@media(max-width:560px){header{padding:12px 14px}.logo{font-size:20px}.header-actions button{padding:9px;font-size:11px}.feature-banner{align-items:flex-start;flex-direction:column}.trust{grid-template-columns:1fr}.panel-grid{grid-template-columns:1fr}.panel .wide{grid-column:auto}}
+</style>
+</head>
+<body>
+<header>
+<a class="logo" href="#" aria-label="HubOfertas início">✦ Hub<span>Ofertas</span></a>
+<div class="header-actions"><button onclick="document.getElementById('panel').classList.toggle('open');if(document.getElementById('panel').classList.contains('open'))document.getElementById('panel').scrollIntoView({behavior:'smooth'})">ADMIN / DEMO</button></div>
+</header>
+<section class="hero">
+<div class="eyebrow">Seu shopping de ofertas</div>
+<h1>Encontre sua próxima oferta favorita.</h1>
+<p>Produtos selecionados em tecnologia, games, casa, moda e muito mais — tudo em um só lugar.</p>
+<div class="search-wrap"><span class="search-icon">⌕</span><input id="search" type="search" placeholder="Buscar produtos ou lojas..." aria-label="Buscar produtos" oninput="render()"></div>
+</section>
+<main>
+<div class="section-head"><h2>Explore as categorias</h2><span class="muted" id="count"></span></div>
+<div class="categories" id="categories"></div>
+<section class="feature-banner">
+<div><h2>🎮 HUB GAMER</h2><p>Equipamentos, acessórios e tecnologia para montar seu setup.</p></div>
+<button onclick="filterCategory('Gamer')">VER OFERTAS GAMER</button>
+</section>
+<div class="section-head"><h2 id="sectionTitle">🔥 Produtos em destaque</h2></div>
+<div class="products" id="products"></div>
+<section class="trust">
+<article><strong>✦ Ofertas em um só lugar</strong><p>Descubra produtos de diferentes categorias e lojas.</p></article>
+<article><strong>↗ Compra na loja parceira</strong><p>Ao escolher uma oferta, você será direcionado ao site da loja.</p></article>
+<article><strong>♡ Transparência</strong><p>Podemos receber comissão por compras qualificadas feitas por links de afiliados.</p></article>
+</section>
+<section class="store-list"><h2>🏬 Lojas parceiras</h2><p>Shopee · Amazon · Mercado Livre · Shein · AliExpress · Magazine Luiza · KaBuM!</p></section>
+<section class="panel" id="panel">
+<h2>🔐 Painel administrativo — demonstração</h2>
+<div class="notice"><strong>Atenção:</strong> esta versão é um protótipo local. Os produtos ficam salvos somente neste navegador. O painel ainda não tem login seguro e não deve receber dados confidenciais. Antes de publicar, vamos conectar autenticação e banco de dados online.</div>
+<h3>Cadastrar produto</h3>
+<div class="panel-grid">
+<label>Nome do produto<input id="pname" placeholder="Ex.: Mouse Gamer RGB"></label>
+<label>Preço exibido<input id="pprice" placeholder="Ex.: R$ 129,90"></label>
+<label>Categoria<select id="pcat"><option>Gamer</option><option>Tecnologia</option><option>Casa</option><option>Moda</option><option>Beleza</option><option>Esportes</option></select></label>
+<label>Loja<select id="pstore"><option>Shopee</option><option>Amazon</option><option>Mercado Livre</option><option>Shein</option><option>AliExpress</option><option>Magazine Luiza</option><option>KaBuM!</option></select></label>
+<label class="wide">URL da imagem<input id="pimage" placeholder="https://..."></label>
+<label class="wide">Seu link de afiliado<input id="plink" placeholder="https://..."></label>
+<div class="wide"><button onclick="addProduct()">CADASTRAR PRODUTO</button></div>
+</div>
+<h3>Produtos cadastrados</h3><div id="adminList" class="admin-list"></div>
+</section>
+</main>
+<footer>
+<strong>✦ HubOfertas © 2026</strong>
+<p>Os produtos são vendidos pelas lojas parceiras. O HubOfertas pode receber comissões por compras realizadas por meio de links de afiliados, sem custo adicional ao comprador, conforme as regras de cada programa.</p>
+<p>Preços, estoque, frete e disponibilidade devem ser confirmados na loja de destino.</p>
+</footer>
+<script>
+const categories=["Todos","Gamer","Tecnologia","Casa","Moda","Beleza","Esportes"];
+const demo=[
+["Mouse Gamer RGB","Gamer","KaBuM!","Preço na loja","https://images.unsplash.com/photo-1527814050087-3793815479db?w=500"],
+["Teclado Mecânico","Gamer","Amazon","Preço na loja","https://images.unsplash.com/photo-1587829741301-dc798b83add3?w=500"],
+["Headset Gamer","Gamer","Shopee","Preço na loja","https://images.unsplash.com/photo-1599669454699-248893623440?w=500"],
+["Cadeira Gamer","Gamer","Mercado Livre","Preço na loja","https://images.unsplash.com/photo-1598550476439-6847785fcea6?w=500"],
+["Monitor Gamer","Gamer","KaBuM!","Preço na loja","https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=500"],
+["Notebook","Tecnologia","Amazon","Preço na loja","https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500"],
+["Smartphone","Tecnologia","Magazine Luiza","Preço na loja","https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=500"],
+["Smartwatch","Tecnologia","AliExpress","Preço na loja","https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"],
+["Air Fryer","Casa","Magazine Luiza","Preço na loja","https://images.unsplash.com/photo-1648114072484-ecfb6d8c3d7c?w=500"],
+["Tênis","Esportes","Shein","Preço na loja","https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500"],
+["Bolsa","Moda","Shein","Preço na loja","https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=500"],
+["Perfume","Beleza","Shopee","Preço na loja","https://images.unsplash.com/photo-1541643600914-78b084683601?w=500"]
+];
+let products;
+try{products=JSON.parse(localStorage.getItem("hubProducts")||"null")}catch(e){products=null}
+if(!Array.isArray(products))products=demo.map((p,i)=>({id:i+1,name:p[0],category:p[1],store:p[2],price:p[3],image:p[4],link:"",demo:true}));
+let category="Todos";
+function safe(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));}
+function safeLink(s){try{const u=new URL(s);return ["https:","http:"].includes(u.protocol)?u.href:""}catch{return ""}}
+function save(){try{localStorage.setItem("hubProducts",JSON.stringify(products))}catch(e){alert("Não foi possível salvar neste navegador.")}}
+function renderCategories(){document.getElementById("categories").innerHTML=categories.map(c=>`<button class="${c===category?'active':''}" onclick="filterCategory('${c}')">${c}</button>`).join("")}
+function filterCategory(c){category=c;document.getElementById("sectionTitle").textContent=c==="Todos"?"🔥 Produtos em destaque":"🛍️ "+c;renderCategories();render()}
+function render(){
+const q=document.getElementById("search").value.trim().toLowerCase();
+const list=products.filter(p=>(category==="Todos"||p.category===category)&&(`${p.name} ${p.store} ${p.category}`.toLowerCase().includes(q)));
+document.getElementById("count").textContent=`${list.length} produto(s)`;
+document.getElementById("products").innerHTML=list.length?list.map(p=>{
+const link=safeLink(p.link);
+const image=safeLink(p.image)||"https://placehold.co/400x300/222/gold?text=HubOfertas";
+return `<article class="card"><img src="${image}" alt="${safe(p.name)}" loading="lazy" onerror="this.src='https://placehold.co/400x300/222/gold?text=HubOfertas'"><div class="tag">${safe(p.category)} · ${safe(p.store)}</div><h3>${safe(p.name)}</h3><div class="price">${safe(p.price)}</div><div class="store">Disponibilidade na ${safe(p.store)}</div>${link?`<a href="${link}" target="_blank" rel="sponsored nofollow noopener noreferrer"><button>VER OFERTA ↗</button></a>`:`<button class="placeholder" disabled>OFERTA EM BREVE</button>`}</article>`;
+}).join(""):'<div class="empty">Nenhum produto encontrado. Tente outra busca ou categoria.</div>';
+}
+function addProduct(){
+const name=document.getElementById("pname").value.trim(),price=document.getElementById("pprice").value.trim(),image=document.getElementById("pimage").value.trim(),link=document.getElementById("plink").value.trim();
+if(!name||!price){alert("Informe o nome e o preço.");return}
+if(image&&!safeLink(image)){alert("Use uma URL de imagem válida começando com http:// ou https://.");return}
+if(link&&!safeLink(link)){alert("Use um link válido começando com https://.");return}
+products.unshift({id:Date.now(),name,price,image,category:document.getElementById("pcat").value,store:document.getElementById("pstore").value,link,demo:false});
+save();render();adminRender();["pname","pprice","pimage","plink"].forEach(id=>document.getElementById(id).value="");alert("Produto cadastrado neste navegador!");
+}
+function adminRender(){document.getElementById("adminList").innerHTML=products.map((p,i)=>`<div class="adminitem"><span>${safe(p.name)} — ${safe(p.store)}</span><button onclick="removeProduct(${i})">Excluir</button></div>`).join("")||'<p class="muted">Nenhum produto cadastrado.</p>'}
+function removeProduct(i){if(confirm("Excluir este produto?")){products.splice(i,1);save();render();adminRender()}}
+renderCategories();render();adminRender();
+</script>
+</body>
+</html>
