@@ -5,336 +5,234 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080808">
-<title>HubOfertas | As melhores ofertas em um só lugar</title>
+<title>HubOfertas | As melhores ofertas</title>
+
 <style>
-:root {
-  --gold:#ffc400;
-  --gold2:#ffdf70;
-  --bg:#080808;
-  --card:#151515;
-  --muted:#aaa;
-}
+:root{--gold:#ffc400;--bg:#080808;--card:#151515}
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  background:var(--bg);color:white;
-  font-family:Arial,Helvetica,sans-serif;
-}
-header{
-  padding:22px 6%;display:flex;align-items:center;
-  justify-content:space-between;gap:15px;flex-wrap:wrap;
-  background:#0d0d0d;border-bottom:1px solid #493900;
-  position:sticky;top:0;z-index:10;
-}
-.logo{font-size:27px;font-weight:900;color:white}
+body{background:var(--bg);color:white;font-family:Arial,sans-serif}
+header{padding:20px 6%;display:flex;align-items:center;justify-content:space-between;gap:15px;flex-wrap:wrap;background:#0d0d0d;border-bottom:1px solid #493900;position:sticky;top:0;z-index:10}
+.logo{font-size:27px;font-weight:900}
 .logo span{color:var(--gold);text-shadow:0 0 15px #ffc400}
 nav{display:flex;gap:18px;flex-wrap:wrap}
 nav a{color:#ddd;text-decoration:none;font-size:14px}
 nav a:hover{color:var(--gold)}
-.hero{
-  padding:65px 6%;text-align:center;
-  background:radial-gradient(ellipse at center,#382800 0%,#15100a 35%,#080808 75%);
-}
+.hero{padding:65px 6%;text-align:center;background:radial-gradient(ellipse at center,#382800,#15100a 40%,#080808 80%)}
 .hero h1{font-size:clamp(32px,6vw,58px);margin-bottom:15px}
 .hero h1 span{color:var(--gold);text-shadow:0 0 20px #ffc400}
 .hero p{color:#ccc;line-height:1.6}
-.hero button,.buy{
-  background:linear-gradient(135deg,#ffe17a,#d99b00);
-  color:#151000;border:0;border-radius:9px;
-  padding:13px 22px;font-weight:bold;cursor:pointer;
-  text-decoration:none;display:inline-block;
-}
+.hero button,.buy{background:linear-gradient(135deg,#ffe17a,#d99b00);color:#151000;border:0;border-radius:9px;padding:13px 22px;font-weight:bold;cursor:pointer;text-decoration:none;display:inline-block}
 .hero button{margin-top:25px}
 .search-area{padding:25px 6% 10px}
-.search-area input{
-  width:100%;padding:16px;border-radius:10px;
-  background:#171717;border:1px solid #51400b;
-  color:white;font-size:16px;outline:none;
-}
+.search-area input{width:100%;padding:16px;border-radius:10px;background:#171717;border:1px solid #51400b;color:white;font-size:16px;outline:none}
 .search-area input:focus{border-color:var(--gold);box-shadow:0 0 12px #ffc40055}
-.categories{
-  display:flex;gap:10px;overflow-x:auto;
-  padding:20px 6%;scrollbar-width:thin;
-}
-.cat{
-  white-space:nowrap;background:#171717;color:white;
-  border:1px solid #51400b;border-radius:30px;
-  padding:11px 17px;cursor:pointer;
-}
-.cat.active,.cat:hover{
-  background:var(--gold);color:#111;border-color:var(--gold);
-}
+.categories{display:flex;gap:10px;overflow-x:auto;padding:20px 6%}
+.cat{white-space:nowrap;background:#171717;color:white;border:1px solid #51400b;border-radius:30px;padding:11px 17px;cursor:pointer}
+.cat.active,.cat:hover{background:var(--gold);color:#111;border-color:var(--gold)}
 .section{padding:28px 6%}
-.section-title{
-  font-size:25px;margin-bottom:22px;
-  border-left:4px solid var(--gold);padding-left:12px;
-}
+.section-title{font-size:25px;margin-bottom:22px;border-left:4px solid var(--gold);padding-left:12px}
 .section-title span{color:var(--gold)}
-.products{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:19px;
-}
-.product{
-  background:linear-gradient(145deg,#191919,#101010);
-  border:1px solid #292929;border-radius:15px;
-  overflow:hidden;transition:.25s;position:relative;
-}
-.product:hover{
-  transform:translateY(-5px);border-color:var(--gold);
-  box-shadow:0 0 20px #ffc40028;
-}
-.product-image{
-  height:155px;display:flex;align-items:center;
-  justify-content:center;background:radial-gradient(circle,#30250c,#151515 70%);
-  font-size:65px;
-}
+.products{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:19px}
+.product{background:linear-gradient(145deg,#191919,#101010);border:1px solid #292929;border-radius:15px;overflow:hidden;transition:.25s}
+.product:hover{transform:translateY(-5px);border-color:var(--gold);box-shadow:0 0 20px #ffc40028}
+.product-image{height:180px;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.product-image img{width:100%;height:100%;object-fit:contain;padding:8px;transition:.3s}
+.product:hover .product-image img{transform:scale(1.06)}
+.tag{display:inline-block;background:#3b2c00;color:#ffdc65;font-size:11px;padding:5px 9px;border-radius:20px;margin-bottom:10px}
 .product-info{padding:16px}
-.tag{
-  display:inline-block;background:#3b2c00;color:#ffdc65;
-  font-size:11px;padding:5px 9px;border-radius:20px;
-  margin-bottom:10px;
-}
 .product h3{font-size:16px;min-height:38px;line-height:1.3}
 .store{font-size:12px;color:#aaa;margin:9px 0}
 .price{font-size:24px;font-weight:900;color:var(--gold);margin:12px 0}
 .old-price{font-size:12px;color:#888;text-decoration:line-through;margin-left:6px}
-.coupon{
-  background:#1b2918;color:#9ce58c;border:1px dashed #57874b;
-  padding:8px;border-radius:7px;font-size:12px;margin-bottom:13px;
-}
+.coupon{background:#1b2918;color:#9ce58c;border:1px dashed #57874b;padding:8px;border-radius:7px;font-size:12px;margin-bottom:13px}
 .buy{width:100%;text-align:center}
 .buy:hover{filter:brightness(1.12)}
 .no-results{color:#aaa;padding:25px;display:none}
-.coupons{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-  gap:15px;
-}
-.coupon-card{
-  background:#171717;border:1px dashed var(--gold);
-  padding:20px;border-radius:12px;
-}
+.coupons{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:15px}
+.coupon-card{background:#171717;border:1px dashed var(--gold);padding:20px;border-radius:12px}
 .coupon-card h3{color:var(--gold);margin-bottom:9px}
 .coupon-card p{color:#ccc;font-size:14px;line-height:1.5}
-.coupon-code{
-  margin-top:14px;background:#29200a;color:#ffe17a;
-  padding:10px;border-radius:7px;text-align:center;font-weight:bold;
-}
-.stores{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
-  gap:12px;
-}
-.store-card{
-  padding:22px 12px;text-align:center;border-radius:12px;
-  background:#171717;border:1px solid #333;
-  font-weight:bold;transition:.2s;
-}
+.coupon-code{margin-top:14px;background:#29200a;color:#ffe17a;padding:10px;border-radius:7px;text-align:center;font-weight:bold}
+.stores{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.store-card{padding:22px 12px;text-align:center;border-radius:12px;background:#171717;border:1px solid #333;font-weight:bold}
 .store-card:hover{border-color:var(--gold);color:var(--gold)}
-.disclaimer{
-  color:#888;font-size:12px;line-height:1.6;
-  padding:10px 6% 25px;
-}
-footer{
-  border-top:1px solid #382d0d;text-align:center;
-  padding:30px 6%;color:#888;font-size:13px;
-}
-footer strong{color:var(--gold)}
+.disclaimer{color:#888;font-size:12px;line-height:1.6;padding:10px 6% 25px}
+footer{border-top:1px solid #382d0d;text-align:center;padding:30px 6%;color:#888;font-size:13px}
 @media(max-width:600px){
-  header{justify-content:center}
-  nav{justify-content:center}
-  .hero{padding:48px 5%}
-  .products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .product-image{
-  height:180px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#fff;
-  overflow:hidden;
-}
-.product-image img{
-  width:100%;
-  height:100%;
-  object-fit:contain;
-  padding:8px;
+header{justify-content:center}
+nav{justify-content:center}
+.hero{padding:48px 5%}
+.products{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.product-image{height:135px}
+.product-info{padding:11px}
+.product h3{font-size:14px}
+.price{font-size:19px}
+.buy{padding:11px 7px;font-size:12px}
 }
 </style>
 </head>
-<body>
 
+<body>
 <header>
-  <div class="logo">HUB<span>OFERTAS</span></div>
-  <nav>
-    <a href="#inicio">Início</a>
-    <a href="#produtos">Ofertas</a>
-    <a href="#cupons">Cupons</a>
-    <a href="#lojas">Lojas</a>
-  </nav>
+<div class="logo">HUB<span>OFERTAS</span></div>
+<nav>
+<a href="#inicio">Início</a>
+<a href="#produtos">Ofertas</a>
+<a href="#cupons">Cupons</a>
+<a href="#lojas">Lojas</a>
+</nav>
 </header>
 
 <section class="hero" id="inicio">
-  <h1>AS MELHORES <span>OFERTAS</span><br>ESTÃO AQUI!</h1>
-  <p>Encontre produtos incríveis, promoções e cupons<br>
-  em um só lugar. Economize com o HubOfertas!</p>
-  <button onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">
-    EXPLORAR OFERTAS
-  </button>
+<h1>AS MELHORES <span>OFERTAS</span><br>ESTÃO AQUI!</h1>
+<p>Encontre produtos incríveis, promoções e cupons<br>em um só lugar. Economize com o HubOfertas!</p>
+<button onclick="document.getElementById('produtos').scrollIntoView({behavior:'smooth'})">EXPLORAR OFERTAS</button>
 </section>
 
 <div class="search-area">
-  <input id="search" type="search" placeholder="🔎  Pesquise produtos, marcas ou categorias..." oninput="filterProducts()">
+<input id="search" type="search" placeholder="🔎 Pesquise produtos, marcas ou categorias..." oninput="renderProducts()">
 </div>
 
-<div class="categories" id="categories">
-  <button class="cat active" onclick="setCategory('Todos',this)">🔥 Todos</button>
-  <button class="cat" onclick="setCategory('Gamer',this)">🎮 Gamer</button>
-  <button class="cat" onclick="setCategory('Tecnologia',this)">📱 Tecnologia</button>
-  <button class="cat" onclick="setCategory('Casa',this)">🏠 Casa</button>
-  <button class="cat" onclick="setCategory('Moda',this)">👕 Moda</button>
-  <button class="cat" onclick="setCategory('Beleza',this)">💄 Beleza</button>
-  <button class="cat" onclick="setCategory('Esportes',this)">⚽ Esportes</button>
+<div class="categories">
+<button class="cat active" onclick="setCategory('Todos',this)">🔥 Todos</button>
+<button class="cat" onclick="setCategory('Gamer',this)">🎮 Gamer</button>
+<button class="cat" onclick="setCategory('Tecnologia',this)">📱 Tecnologia</button>
+<button class="cat" onclick="setCategory('Casa',this)">🏠 Casa</button>
+<button class="cat" onclick="setCategory('Moda',this)">👕 Moda</button>
+<button class="cat" onclick="setCategory('Beleza',this)">💄 Beleza</button>
+<button class="cat" onclick="setCategory('Esportes',this)">⚽ Esportes</button>
 </div>
 
 <section class="section" id="produtos">
-  <h2 class="section-title">🔥 Ofertas em <span>destaque</span></h2>
-  <div class="products" id="productList"></div>
-  <p class="no-results" id="noResults">Nenhum produto encontrado. Tente outra pesquisa!</p>
+<h2 class="section-title">🔥 Ofertas em <span>destaque</span></h2>
+<div class="products" id="productList"></div>
+<p class="no-results" id="noResults">Nenhum produto encontrado!</p>
 </section>
 
 <section class="section" id="cupons">
-  <h2 class="section-title">🎟️ Cupons e <span>descontos</span></h2>
-  <div class="coupons">
-    <div class="coupon-card">
-      <h3>🛍️ Shopee</h3>
-      <p>Espaço para divulgar cupons e promoções da loja.</p>
-      <div class="coupon-code">CUPOM DEMONSTRATIVO</div>
-    </div>
-    <div class="coupon-card">
-      <h3>📦 Amazon</h3>
-      <p>Ofertas especiais em tecnologia, casa e muito mais.</p>
-      <div class="coupon-code">CUPOM DEMONSTRATIVO</div>
-    </div>
-    <div class="coupon-card">
-      <h3>👗 SHEIN</h3>
-      <p>Moda, acessórios e novidades com descontos.</p>
-      <div class="coupon-code">CUPOM DEMONSTRATIVO</div>
-    </div>
-    <div class="coupon-card">
-      <h3>💻 KaBuM!</h3>
-      <p>Produtos gamer, informática e tecnologia.</p>
-      <div class="coupon-code">CUPOM DEMONSTRATIVO</div>
-    </div>
-    <div class="coupon-card">
-      <h3>🏬 Magalu</h3>
-      <p>Produtos para sua casa e seu dia a dia.</p>
-      <div class="coupon-code">CUPOM DEMONSTRATIVO</div>
-    </div>
-  </div>
+<h2 class="section-title">🎟️ Cupons e <span>descontos</span></h2>
+<div class="coupons">
+<div class="coupon-card"><h3>🛍️ Shopee</h3><p>Cupons e promoções da loja.</p><div class="coupon-code">CUPOM DEMONSTRATIVO</div></div>
+<div class="coupon-card"><h3>📦 Amazon</h3><p>Ofertas em tecnologia e casa.</p><div class="coupon-code">CUPOM DEMONSTRATIVO</div></div>
+<div class="coupon-card"><h3>👗 SHEIN</h3><p>Moda e acessórios com descontos.</p><div class="coupon-code">CUPOM DEMONSTRATIVO</div></div>
+<div class="coupon-card"><h3>💻 KaBuM!</h3><p>Produtos gamer e informática.</p><div class="coupon-code">CUPOM DEMONSTRATIVO</div></div>
+<div class="coupon-card"><h3>🏬 Magalu</h3><p>Produtos para sua casa.</p><div class="coupon-code">CUPOM DEMONSTRATIVO</div></div>
+</div>
 </section>
 
 <section class="section" id="lojas">
-  <h2 class="section-title">🏪 Nossas <span>lojas</span></h2>
-  <div class="stores">
-    <div class="store-card">🛍️ Shopee</div>
-    <div class="store-card">📦 Amazon</div>
-    <div class="store-card">👗 SHEIN</div>
-    <div class="store-card">💻 KaBuM!</div>
-    <div class="store-card">🏬 Magalu</div>
-  </div>
+<h2 class="section-title">🏪 Nossas <span>lojas</span></h2>
+<div class="stores">
+<div class="store-card">🛍️ Shopee</div>
+<div class="store-card">📦 Amazon</div>
+<div class="store-card">👗 SHEIN</div>
+<div class="store-card">💻 KaBuM!</div>
+<div class="store-card">🏬 Magalu</div>
+</div>
 </section>
 
 <p class="disclaimer">
-  Aviso: os preços e cupons desta versão são demonstrativos, não representam ofertas confirmadas.
-  Confira o valor e as condições na loja antes de comprar. Os links das ofertas precisam ser
-  substituídos pelos links reais dos produtos e, quando aprovados, pelos seus links de afiliado.
+Os preços e cupons desta versão são demonstrativos e não representam ofertas confirmadas.
+Confira o preço e as condições na loja antes de comprar. As imagens são carregadas de um serviço externo e podem não corresponder exatamente ao produto. Substitua os links das lojas pelos links reais dos produtos e, após aprovação, pelos links de afiliado.
 </p>
 
 <footer>
-  <div class="logo">HUB<span>OFERTAS</span></div>
-  <p style="margin-top:12px">Economize mais. Descubra mais.</p>
-  <p style="margin-top:12px">© 2026 HubOfertas — Todos os direitos reservados.</p>
+<div class="logo">HUB<span>OFERTAS</span></div>
+<p style="margin-top:12px">Economize mais. Descubra mais.</p>
+<p style="margin-top:12px">© 2026 HubOfertas — Todos os direitos reservados.</p>
 </footer>
 
 <script>
-const products = [
-{n:"Headset Gamer RGB",e:"🎧",c:"Gamer",s:"KaBuM!",p:129.90,o:199.90,t:"Oferta gamer"},
-{n:"Teclado Mecânico RGB",e:"⌨️",c:"Gamer",s:"KaBuM!",p:189.90,o:249.90,t:"Mais vendido"},
-{n:"Mouse Gamer 7200 DPI",e:"🖱️",c:"Gamer",s:"Shopee",p:59.90,o:89.90,t:"Preço especial"},
-{n:"Controle Bluetooth",e:"🎮",c:"Gamer",s:"Amazon",p:119.90,o:159.90,t:"Oferta"},
-{n:"Cadeira Gamer",e:"🪑",c:"Gamer",s:"Magalu",p:699.90,o:899.90,t:"Desconto"},
-{n:"Monitor Full HD",e:"🖥️",c:"Gamer",s:"KaBuM!",p:649.90,o:799.90,t:"Oferta gamer"},
-{n:"Notebook",e:"💻",c:"Tecnologia",s:"Amazon",p:2499.90,o:2899.90,t:"Tecnologia"},
-{n:"Suporte para Celular",e:"📱",c:"Tecnologia",s:"Shopee",p:19.90,o:34.90,t:"Baratinho"},
-{n:"Power Bank 20000mAh",e:"🔋",c:"Tecnologia",s:"Amazon",p:99.90,o:139.90,t:"Oferta"},
-{n:"Smartwatch Digital",e:"⌚",c:"Tecnologia",s:"Shopee",p:89.90,o:149.90,t:"Mais vendido"},
-{n:"Webcam Full HD",e:"📷",c:"Tecnologia",s:"KaBuM!",p:149.90,o:199.90,t:"Tecnologia"},
-{n:"Caixa de Som Bluetooth",e:"🔊",c:"Tecnologia",s:"Magalu",p:79.90,o:119.90,t:"Oferta"},
-{n:"Luminária LED",e:"💡",c:"Casa",s:"Shopee",p:39.90,o:59.90,t:"Casa"},
-{n:"Jogo de Cama",e:"🛏️",c:"Casa",s:"Magalu",p:89.90,o:129.90,t:"Conforto"},
-{n:"Fritadeira Air Fryer",e:"🍟",c:"Casa",s:"Amazon",p:299.90,o:399.90,t:"Mais vendido"},
-{n:"Cafeteira Elétrica",e:"☕",c:"Casa",s:"Magalu",p:119.90,o:159.90,t:"Oferta"},
-{n:"Aspirador Portátil",e:"🧹",c:"Casa",s:"Amazon",p:159.90,o:219.90,t:"Casa"},
-{n:"Decoração para Quarto",e:"🪴",c:"Casa",s:"Shopee",p:29.90,o:49.90,t:"Decoração"},
-{n:"Tênis Casual",e:"👟",c:"Moda",s:"SHEIN",p:99.90,o:149.90,t:"Moda"},
-{n:"Camiseta Básica",e:"👕",c:"Moda",s:"SHEIN",p:39.90,o:59.90,t:"Estilo"},
-{n:"Mochila Urbana",e:"🎒",c:"Moda",s:"Amazon",p:89.90,o:129.90,t:"Oferta"},
-{n:"Bolsa Feminina",e:"👜",c:"Moda",s:"SHEIN",p:69.90,o:109.90,t:"Moda"},
-{n:"Óculos de Sol",e:"🕶️",c:"Moda",s:"SHEIN",p:29.90,o:49.90,t:"Acessório"},
-{n:"Kit de Maquiagem",e:"💄",c:"Beleza",s:"SHEIN",p:59.90,o:89.90,t:"Beleza"},
-{n:"Organizador de Maquiagem",e:"🧴",c:"Beleza",s:"Shopee",p:34.90,o:54.90,t:"Organização"},
-{n:"Kit de Unhas",e:"💅",c:"Beleza",s:"SHEIN",p:24.90,o:39.90,t:"Beleza"},
-{n:"Acessórios de Skincare",e:"🧖",c:"Beleza",s:"Shopee",p:39.90,o:64.90,t:"Cuidados"},
-{n:"Kit de Academia",e:"🏋️",c:"Esportes",s:"Amazon",p:79.90,o:119.90,t:"Fitness"},
-{n:"Bola de Futebol",e:"⚽",c:"Esportes",s:"Magalu",p:69.90,o:99.90,t:"Esporte"},
-{n:"Garrafa Esportiva",e:"🥤",c:"Esportes",s:"Shopee",p:29.90,o:44.90,t:"Dia a dia"}
+const products=[
+{n:"Headset Gamer RGB",c:"Gamer",s:"KaBuM!",p:129.90,o:199.90,t:"Oferta gamer"},
+{n:"Teclado Mecânico RGB",c:"Gamer",s:"KaBuM!",p:189.90,o:249.90,t:"Mais vendido"},
+{n:"Mouse Gamer 7200 DPI",c:"Gamer",s:"Shopee",p:59.90,o:89.90,t:"Preço especial"},
+{n:"Controle Bluetooth",c:"Gamer",s:"Amazon",p:119.90,o:159.90,t:"Oferta"},
+{n:"Cadeira Gamer",c:"Gamer",s:"Magalu",p:699.90,o:899.90,t:"Desconto"},
+{n:"Monitor Full HD",c:"Gamer",s:"KaBuM!",p:649.90,o:799.90,t:"Oferta gamer"},
+{n:"Notebook",c:"Tecnologia",s:"Amazon",p:2499.90,o:2899.90,t:"Tecnologia"},
+{n:"Suporte para Celular",c:"Tecnologia",s:"Shopee",p:19.90,o:34.90,t:"Baratinho"},
+{n:"Power Bank 20000mAh",c:"Tecnologia",s:"Amazon",p:99.90,o:139.90,t:"Oferta"},
+{n:"Smartwatch Digital",c:"Tecnologia",s:"Shopee",p:89.90,o:149.90,t:"Mais vendido"},
+{n:"Webcam Full HD",c:"Tecnologia",s:"KaBuM!",p:149.90,o:199.90,t:"Tecnologia"},
+{n:"Caixa de Som Bluetooth",c:"Tecnologia",s:"Magalu",p:79.90,o:119.90,t:"Oferta"},
+{n:"Luminária LED",c:"Casa",s:"Shopee",p:39.90,o:59.90,t:"Casa"},
+{n:"Jogo de Cama",c:"Casa",s:"Magalu",p:89.90,o:129.90,t:"Conforto"},
+{n:"Fritadeira Air Fryer",c:"Casa",s:"Amazon",p:299.90,o:399.90,t:"Mais vendido"},
+{n:"Cafeteira Elétrica",c:"Casa",s:"Magalu",p:119.90,o:159.90,t:"Oferta"},
+{n:"Aspirador Portátil",c:"Casa",s:"Amazon",p:159.90,o:219.90,t:"Casa"},
+{n:"Decoração para Quarto",c:"Casa",s:"Shopee",p:29.90,o:49.90,t:"Decoração"},
+{n:"Tênis Casual",c:"Moda",s:"SHEIN",p:99.90,o:149.90,t:"Moda"},
+{n:"Camiseta Básica",c:"Moda",s:"SHEIN",p:39.90,o:59.90,t:"Estilo"},
+{n:"Mochila Urbana",c:"Moda",s:"Amazon",p:89.90,o:129.90,t:"Oferta"},
+{n:"Bolsa Feminina",c:"Moda",s:"SHEIN",p:69.90,o:109.90,t:"Moda"},
+{n:"Óculos de Sol",c:"Moda",s:"SHEIN",p:29.90,o:49.90,t:"Acessório"},
+{n:"Kit de Maquiagem",c:"Beleza",s:"SHEIN",p:59.90,o:89.90,t:"Beleza"},
+{n:"Organizador de Maquiagem",c:"Beleza",s:"Shopee",p:34.90,o:54.90,t:"Organização"},
+{n:"Kit de Unhas",c:"Beleza",s:"SHEIN",p:24.90,o:39.90,t:"Beleza"},
+{n:"Acessórios de Skincare",c:"Beleza",s:"Shopee",p:39.90,o:64.90,t:"Cuidados"},
+{n:"Kit de Academia",c:"Esportes",s:"Amazon",p:79.90,o:119.90,t:"Fitness"},
+{n:"Bola de Futebol",c:"Esportes",s:"Magalu",p:69.90,o:99.90,t:"Esporte"},
+{n:"Garrafa Esportiva",c:"Esportes",s:"Shopee",p:29.90,o:44.90,t:"Dia a dia"}
 ];
 
 let selectedCategory="Todos";
 
 function money(value){
- return value.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
+return value.toLocaleString("pt-BR",{style:"currency",currency:"BRL"});
 }
 
 function storeUrl(store){
- const urls={
-  "Shopee":"https://shopee.com.br/",
-  "Amazon":"https://www.amazon.com.br/",
-  "SHEIN":"https://br.shein.com/",
-  "KaBuM!":"https://www.kabum.com.br/",
-  "Magalu":"https://www.magazineluiza.com.br/"
- };
- return urls[store];
+const urls={
+"Shopee":"https://shopee.com.br/",
+"Amazon":"https://www.amazon.com.br/",
+"SHEIN":"https://br.shein.com/",
+"KaBuM!":"https://www.kabum.com.br/",
+"Magalu":"https://www.magazineluiza.com.br/"
+};
+return urls[store];
+}
+
+function imageUrl(name){
+return "https://loremflickr.com/600/400/"+encodeURIComponent(name);
 }
 
 function renderProducts(){
- const term=document.getElementById("search").value.toLowerCase();
- const list=products.filter(p=>
-  (selectedCategory==="Todos"||p.c===selectedCategory)&&
-  (p.n.toLowerCase().includes(term)||p.c.toLowerCase().includes(term)||p.s.toLowerCase().includes(term))
- );
- const container=document.getElementById("productList");
- container.innerHTML=list.map(p=>`
-  <article class="product">
-   <div class="product-image">${p.e}</div>
-   <div class="product-info">
-    <span class="tag">${p.t}</span>
-    <h3>${p.n}</h3>
-    <p class="store">Disponível na ${p.s}</p>
-    <div class="price">${money(p.p)} <span class="old-price">${money(p.o)}</span></div>
-    <div class="coupon">🎟️ Consulte cupons disponíveis na loja</div>
-    <a class="buy" href="${storeUrl(p.s)}" target="_blank" rel="noopener">VER OFERTA ↗</a>
-   </div>
-  </article>
- `).join("");
- document.getElementById("noResults").style.display=list.length?"none":"block";
+const term=document.getElementById("search").value.toLowerCase();
+const list=products.filter(p=>
+(selectedCategory==="Todos"||p.c===selectedCategory)&&
+(p.n.toLowerCase().includes(term)||p.c.toLowerCase().includes(term)||p.s.toLowerCase().includes(term))
+);
+
+const container=document.getElementById("productList");
+
+container.innerHTML=list.map((p,i)=>`
+<article class="product">
+<div class="product-image">
+<img src="${imageUrl(p.n)}" alt="${p.n}" loading="lazy"
+onerror="this.onerror=null;this.src='https://placehold.co/600x400/eeeeee/222222?text=Produto'">
+</div>
+<div class="product-info">
+<span class="tag">${p.t}</span>
+<h3>${p.n}</h3>
+<p class="store">Disponível na ${p.s}</p>
+<div class="price">${money(p.p)} <span class="old-price">${money(p.o)}</span></div>
+<div class="coupon">🎟️ Consulte cupons disponíveis na loja</div>
+<a class="buy" href="${storeUrl(p.s)}" target="_blank" rel="noopener">VER OFERTA ↗</a>
+</div>
+</article>
+`).join("");
+
+document.getElementById("noResults").style.display=list.length?"none":"block";
 }
 
-function filterProducts(){renderProducts()}
 function setCategory(category,button){
- selectedCategory=category;
- document.querySelectorAll(".cat").forEach(b=>b.classList.remove("active"));
- button.classList.add("active");
- renderProducts();
+selectedCategory=category;
+document.querySelectorAll(".cat").forEach(b=>b.classList.remove("active"));
+button.classList.add("active");
+renderProducts();
 }
+
 renderProducts();
 </script>
 </body>
